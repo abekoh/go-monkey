@@ -215,15 +215,15 @@ func (bs *BlockStatement) String() string {
 	return out.String()
 }
 
-type FunctionalLiteral struct {
+type FunctionLiteral struct {
 	Token      token.Token
 	Parameters []*Identifier
 	Body       *BlockStatement
 }
 
-func (fl *FunctionalLiteral) expressionNode()      {}
-func (fl *FunctionalLiteral) TokenLiteral() string { return fl.Token.Literal }
-func (fl *FunctionalLiteral) String() string {
+func (fl *FunctionLiteral) expressionNode()      {}
+func (fl *FunctionLiteral) TokenLiteral() string { return fl.Token.Literal }
+func (fl *FunctionLiteral) String() string {
 	var out bytes.Buffer
 
 	params := []string{}
