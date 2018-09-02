@@ -1,4 +1,4 @@
-package repl
+package runner
 
 import (
 	"bufio"
@@ -13,7 +13,9 @@ import (
 
 const PROMPT = ">> "
 
-func Start(in io.Reader, out io.Writer) {
+func StartRepl(in io.Reader, out io.Writer) {
+	io.WriteString(out, "Hello abekoh! This is the Monkey programming language!\n")
+	io.WriteString(out, "Feel free to type in commands\n")
 	scanner := bufio.NewScanner(in)
 	env := object.NewEnvironment()
 
@@ -39,11 +41,5 @@ func Start(in io.Reader, out io.Writer) {
 			io.WriteString(out, evaluated.Inspect())
 			io.WriteString(out, "\n")
 		}
-	}
-}
-
-func printParserErrors(out io.Writer, errors []string) {
-	for _, msg := range errors {
-		io.WriteString(out, "\t"+msg+"\n")
 	}
 }

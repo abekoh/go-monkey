@@ -1,14 +1,23 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"os"
 
-	"github.com/abekoh/monkey/repl"
+	"github.com/abekoh/monkey/runner"
 )
 
 func main() {
-	fmt.Printf("Hello abekoh! This is the Monkey programming language!\n")
-	fmt.Printf("Feel free to type in commands\n")
-	repl.Start(os.Stdin, os.Stdout)
+	switch len(os.Args) {
+	case 1:
+		runner.StartRepl(os.Stdin, os.Stdout)
+	case 2:
+		f, err := os.Open(os.Args[1])
+		if err != nil {
+			log.Fatal(err)
+		}
+		runner.StartScript(f, os.Stdout)
+	default:
+	}
+
 }
